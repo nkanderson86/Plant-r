@@ -43,6 +43,11 @@ class EditDeviceForm extends Component {
         this.props.navigation.dispatch(navigateAction);
     }
 
+    capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
+
     render() {
         return (
             <ScrollView>
@@ -65,17 +70,19 @@ class EditDeviceForm extends Component {
                             Device Schedule
                         </Text>
                     </View>
-                    <View >
-                        {
-                            this.state.scheduleData ? this.state.scheduleData.map((sch, i) => {
-                                return (
-                                    <View key={i}>
-                                        <Text style={styles.viewScheduleText} >{`${sch.day}`}   |   {`${sch.time}`}   |   {`${sch.amount} cups`}</Text>
-                                    </View>)
-                            }
-                            )
-                                : null}
-                    </View>
+                    <ScrollView>
+                        <View >
+                            {
+                                this.state.scheduleData ? this.state.scheduleData.map((sch, i) => {
+                                    return (
+                                        <View key={i}>
+                                            <Text style={styles.viewScheduleText} >{this.capitalize(`${sch.day}`)}   |   {`${sch.time}`}   |   {`${sch.amount} cups`}</Text>
+                                        </View>)
+                                }
+                                )
+                                    : null}
+                        </View>
+                    </ScrollView>
                 </Container>
             </ScrollView>
 
