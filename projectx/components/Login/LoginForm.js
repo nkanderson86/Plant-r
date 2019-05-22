@@ -1,12 +1,9 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import { NavigationActions, withNavigation } from "react-navigation";
-import { Button } from 'react-native-elements';
-// import LoginButton from "./LoginButton"
-import ForgotPasswordButton from "../Forgot/ForgotPasswordButton"
-import SignupButton from "../Signup/SignupButton"
+import { Button } from "react-native-elements";
 import API from '../../utils/API';
 
 // create classful component
@@ -48,6 +45,20 @@ class LoginForm extends Component {
 
     }
 
+    goToForgot = () => {
+        const navigationAction = NavigationActions.navigate({
+            routeName: "Forgot",
+        });
+        this.props.navigation.dispatch(navigationAction);
+    }
+
+    goToSignup = () => {
+        const navigationAction = NavigationActions.navigate({
+            routeName: "Signup",
+        });
+        this.props.navigation.dispatch(navigationAction);
+    }
+
     render() {
 
         return (
@@ -62,11 +73,22 @@ class LoginForm extends Component {
                     <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, if authenticated, to dashboard, input login in component to check auth */}
-                <Button onPress={this.login} style={styles.loginButton} title="Login" />
-                {/* button to route user to reset password */}
-                <ForgotPasswordButton title="Forgot" />
-                {/* button to route user to create an account */}
-                <SignupButton />
+
+                <Button onPress={this.login} title="Login" style={styles.loginButton} />
+
+
+                {/* link to route user to reset password */}
+                <View style={{ flexDirection: "row" }}>
+                    <Text style={{ color: "grey", marginLeft: 20, marginRight: 10, marginTop: 10 }}
+                        onPress={this.goToForgot}>
+                        Forgot Password
+                     </Text>
+                    {/* link to route user to create an account */}
+                    <Text style={{ color: "grey", marginTop: 10 }}
+                        onPress={this.goToSignup}>
+                        Signup
+                    </Text>
+                </View>
             </Form>
         );
     }
@@ -89,7 +111,7 @@ const styles = StyleSheet.create({
     loginButton: {
         marginTop: 40,
         marginRight: 20,
-        marginLeft: 20
+        marginLeft: 20,
     },
 
 });
