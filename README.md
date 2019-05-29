@@ -30,7 +30,7 @@ The project is still being iterated on to add more features and functionality fo
 **To Demo the App:**
 Phone: (must have expo App downloaded on your phone) 
   1. Log into Expo with the credentials: 
-      user: nkanderson86
+      user: bretallan
       pw: 1234
   2. Scan the QR code below with your phone and open in Expo
   
